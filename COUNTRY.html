@@ -1,3 +1,18 @@
+Dockerfile
+```
+# Dockerfile para site HTML estático
+FROM nginx:alpine
+
+# Remover site default do nginx
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copiar os arquivos do site para o container
+COPY . /usr/share/nginx/html
+
+# Expõe a porta padrão do nginx
+EXPOSE 80
+```
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -63,3 +78,4 @@
   </div>
 </body>
 </html>
+
