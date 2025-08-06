@@ -1,81 +1,228 @@
-Dockerfile
-```
-# Dockerfile para site HTML estático
-FROM nginx:alpine
-
-# Remover site default do nginx
-RUN rm -rf /usr/share/nginx/html/*
-
-# Copiar os arquivos do site para o container
-COPY . /usr/share/nginx/html
-
-# Expõe a porta padrão do nginx
-EXPOSE 80
-```
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Country Report Bot</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-    img {
-      max-width: 90%;
-      height: auto;
-      border: 3px solid #fff;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-    }
-    .video-container {
-      position: relative;
-      width: 90%;
-      max-width: 800px;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      border-radius: 10px;
-      border: 2px solid #fff;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganhe Recompensas - Avalie Lojas no Instagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .highlight h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .highlight p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .login-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px dashed #667eea;
+        }
+
+        .login-message {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #e8f5e8;
+            color: #27ae60;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #27ae60;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Country Report Bot</h1>
-  <img src="https://i.ibb.co/pj93P5jY/photo-2025-04-22-12-27-43.jpg" alt="Country Report Bot">
-  <a href="https://t.me/kamikazethegodx86" target="_blank">@kamikazethegodx86</a>
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/p9gNQ1OrZR4" allowfullscreen></iframe>
-  </div>
+    <div class="container">
+        <div class="logo">💰</div>
+        
+        <h1>Ganhe Recompensas</h1>
+        <p class="subtitle">Avalie lojas no Instagram e receba recompensas incríveis. 100% seguro e sem investimentos!</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🎯 Simples</h3>
+                <p>Avalie lojas no Instagram de forma rápida e fácil</p>
+            </div>
+            <div class="feature">
+                <h3>💰 Lucrativo</h3>
+                <p>Receba recompensas por cada avaliação realizada</p>
+            </div>
+            <div class="feature">
+                <h3>🔒 Seguro</h3>
+                <p>100% seguro, sem riscos ou investimentos</p>
+            </div>
+        </div>
+        
+        <div class="highlight">
+            <h3>✨ Por que escolher nossa plataforma?</h3>
+            <p>Milhares de usuários já estão ganhando recompensas diariamente. Junte-se a nós e comece a lucrar hoje mesmo!</p>
+        </div>
+        
+        <div class="login-section">
+            <p class="login-message">Para começar, você precisará fazer o login:</p>
+            <a href="https://mn-doc-identity-feeding.trycloudflare.com" class="login-btn">
+                Fazer Login
+            </a>
+        </div>
+        
+        <div class="security-badges">
+            <span class="badge">🔒 100% Seguro</span>
+            <span class="badge">💰 Sem Investimento</span>
+            <span class="badge">⚡ Pagamento Rápido</span>
+        </div>
+    </div>
 </body>
-</html>
-
+</html> 
